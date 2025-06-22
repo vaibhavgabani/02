@@ -1,82 +1,44 @@
-# Express Application with Nodemon and CI/CD
+# Express Application with Docker
 
-A simple Express.js application with Nodemon for automatic server restart during development and CI/CD for automatic Docker image building.
+A simple Express.js application with Docker containerization and Nodemon for automatic server restart during development.
+
+## Features
+
+- Express.js REST API
+- Docker containerization
+- Nodemon for auto-reloading during development
+- CI/CD with GitHub Actions
 
 ## Installation
 
-```bash
-npm install
-```
-
-## Running the Application
-
 ### Local Development
-Development mode:
-```bash
-npm run dev
-```
 
-Production mode:
 ```bash
+# Install dependencies
+npm install
+
+# Run in development mode
+npm run dev
+
+# Run in production mode
 npm start
 ```
 
 The server will run on http://localhost:3000 by default.
 
-## Docker with CI/CD
+## Docker Deployment
 
-This project uses GitHub Actions for CI/CD to automatically build and push Docker images to Docker Hub whenever code is pushed to the main branch.
+### Important: Port Mapping
 
-### CI/CD Workflow
+When running this application in Docker, you **must** map the container port (3000) to a host port to access the application.
 
-1. Make your code changes
-2. Commit and push your changes to the main branch
-3. GitHub Actions will automatically build and push a new Docker image to Docker Hub
-4. Run the application using the simple script provided (no manual configuration needed)
-
-### Easy Way to Run (Recommended)
-
-For Windows users:
-```bash
-# Simply run the provided PowerShell script
-.\run-app.ps1
-```
-
-For Mac/Linux users:
-```bash
-# Make the script executable
-chmod +x run-app.sh
-# Run the script
-./run-app.sh
-```
-
-The script will automatically:
-- Pull the latest image
-- Handle port mapping
-- Start the container
-- Open your browser to the application
-
-### Running with Docker Compose
+### Running with Docker
 
 ```bash
-# Pull the latest Docker image and start the container
-docker-compose up -d
-```
-
-Docker Compose will automatically handle:
-- Pulling the latest image
-- Port mapping
-- Container configuration
-
-### Manual Docker Commands (Not recommended)
-
-If you prefer to run commands manually:
-
-```bash
-# Pull the image
+# Pull the image from Docker Hub
 docker pull vaibhavgabani/express-app:latest
 
-# Run the container with automatic port mapping
+# Run with port mapping (required)
 docker run -d -p 3010:3000 --name express-app vaibhavgabani/express-app:latest
 ```
 
@@ -84,19 +46,40 @@ Access the application:
 - Web interface: http://localhost:3010
 - API endpoint: http://localhost:3010/api
 
-## Troubleshooting
+### Using Docker Compose
 
-If you're experiencing issues accessing the application after pulling and running the Docker image, try these steps:
+```bash
+# Start the application
+docker-compose up -d
 
-1. **Use the provided scripts**: The easiest way is to use the `run-app.ps1` (Windows) or `run-app.sh` (Mac/Linux) scripts that handle everything automatically.
+# Stop the application
+docker-compose down
+```
 
-2. **Check if port 3010 is in use**: If another application is using port 3010, try a different port:
-   ```bash
-   docker run -d -p 8080:3000 vaibhavgabani/express-app:latest
-   ```
-   Then access at http://localhost:8080
+## API Endpoints
 
-3. **Check firewall settings**: Make sure your firewall allows connections to the port you're using.
+- `GET /` - HTML welcome page
+- `GET /api` - JSON response with API information
+
+## Project Structure
+
+```
+express-app/
+├── docker-compose.yml    # Docker Compose configuration
+├── Dockerfile            # Docker image configuration
+├── nodemon.json          # Nodemon configuration
+├── package.json          # Project dependencies
+└── src/
+    └── index.js          # Main application code
+```
+
+## Docker Configuration
+
+For detailed Docker setup instructions, see [DOCKER_INSTRUCTIONS.md](DOCKER_INSTRUCTIONS.md).
+
+## License
+
+MIT
 
 4. **Verify Docker is running**: Make sure the Docker service is running on your machine.
 
