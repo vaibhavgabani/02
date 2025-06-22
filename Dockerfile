@@ -4,6 +4,7 @@ FROM node:18-alpine
 LABEL maintainer="Vaibhav Gabani"
 LABEL description="Express.js API in Docker"
 LABEL usage="docker run -d -p 3010:3000 vaibhavgabani/express-app:latest"
+LABEL instructions="IMPORTANT: Use port mapping -p 3010:3000 when running this container"
 
 WORKDIR /app
 

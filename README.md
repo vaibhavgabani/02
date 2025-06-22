@@ -25,7 +25,21 @@ The server will run on http://localhost:3000 by default.
 
 ## Docker
 
-### Running with Docker
+### Easy Way to Run with Docker
+
+#### Windows Users
+Simply download and double-click the `run-express-app.bat` file, or run:
+```bash
+run-express-app.bat
+```
+
+#### Mac/Linux Users
+```bash
+chmod +x run-express-app.sh
+./run-express-app.sh
+```
+
+### Manual Docker Commands
 
 Pull the image from Docker Hub:
 ```bash
