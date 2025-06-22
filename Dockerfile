@@ -19,7 +19,7 @@ COPY . .
 
 # Set environment variables
 ENV PORT=3000
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 # This is crucial - ensures the app binds to all network interfaces
 ENV HOST="0.0.0.0"
 
@@ -31,5 +31,5 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
-# Start the application
-CMD ["npm", "start"]
+# Use nodemon instead of node for automatic reloading
+CMD ["npm", "run", "dev"]

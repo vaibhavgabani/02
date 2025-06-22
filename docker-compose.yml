@@ -8,8 +8,12 @@ services:
       - "3010:3000"
     environment:
       - PORT=3000
-      - NODE_ENV=production
+      - NODE_ENV=development
       - HOST=0.0.0.0
+    volumes:
+      - ./src:/app/src
+      - ./package.json:/app/package.json
+      - ./nodemon.json:/app/nodemon.json
     restart: always
     # Adding labels for better documentation
     labels:
