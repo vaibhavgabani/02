@@ -10,6 +10,8 @@ services:
       - PORT=3000
       - NODE_ENV=development
       - HOST=0.0.0.0
+      - RUNNING_IN_DOCKER=true
+      - PORT_MAPPING_OK=true
     volumes:
       - ./src:/app/src
       - ./package.json:/app/package.json
