@@ -14,5 +14,6 @@ jobs:
 
       - name: push image to docker hub
         run: | 
+          docker login -u vaibhavgabani -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push vaibhavgabani/express-app:latest
         
