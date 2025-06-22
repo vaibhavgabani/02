@@ -1,0 +1,55 @@
+const express = require('express');
+
+// Initialize express app
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Middleware for parsing JSON and urlencoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Enhanced route for testing in browser
+app.get('/', (req, res) => {
+  res.send(`
+    <html>
+      <head>
+        <title>Express API</title>
+        <style>
+          body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+          h1 { color: #333; }
+          pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        </style>
+      </head>
+      <body>
+        <h1>Express API Running Successfully</h1>
+        <p>Server is running on port ${PORT}</p>
+        <h2>API Endpoints:</h2>
+        <ul>
+          <li><code>GET /</code> - This welcome page</li>
+          <li><code>GET /api</code> - Sample JSON response (try in Postman)</li>
+        </ul>
+        <p>Use Postman with this URL: <pre>http://localhost:3010/api</pre></p>
+      </body>
+    </html>
+  `);
+});
+
+// API endpoint for Postman testing
+app.get('/api', (req, res) => {
+  res.json({ 
+    message: 'API is working correctly!',
+    timestamp: new Date(),
+    serverPort: PORT,
+    endpoints: [
+      { method: 'GET', path: '/', description: 'Welcome page' },
+      { method: 'GET', path: '/api', description: 'This JSON response' }
+    ]
+  });
+});
+
+// Start the server
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
+  console.log(`- Local URL: http://localhost:${PORT}`);
+  console.log(`- For Docker access: http://localhost:3010`);
+});
