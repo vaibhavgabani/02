@@ -51,5 +51,6 @@ app.get('/api', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
   console.log(`- Local URL: http://localhost:${PORT}`);
-  console.log(`- For Docker access: http://localhost:3010`);
+  console.log(`- If using Docker, use: http://localhost:3010`);
+  console.log(`- IMPORTANT: When running with Docker, use the command: docker run -d -p 3010:3000 vaibhavgabani/express-app:latest`);
 });
