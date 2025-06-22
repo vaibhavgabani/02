@@ -104,3 +104,10 @@ If you're experiencing issues accessing the application after pulling and runnin
    ```bash
    docker logs express-app
    ```
+host:3000 by default.
+running on your machine.
+
+5. **Check container logs**:
+   ```bash
+   docker logs express-app
+   ```
