@@ -1,9 +1,32 @@
-version: '3'
+name: express-app
+
 services:
   app:
     image: vaibhavgabani/express-app:latest
+    container_name: express-app
     ports:
       - "3010:3000"
     environment:
       - PORT=3000
+      - NODE_ENV=production
+      - HOST=0.0.0.0
     restart: always
+    # Adding labels for better documentation
+    labels:
+      - "com.example.description=Express API"
+      - "com.example.port.mapping=3010:3000"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

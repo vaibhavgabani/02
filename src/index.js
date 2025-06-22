@@ -38,8 +38,7 @@ app.get('/', (req, res) => {
 app.get('/api', (req, res) => {
   res.json({ 
     message: 'API is working correctly!',
-    timestamp: new Date(),
-    serverPort: PORT,
+    timestamp: new Date(),    serverPort: PORT,
     endpoints: [
       { method: 'GET', path: '/', description: 'Welcome page' },
       { method: 'GET', path: '/api', description: 'This JSON response' }
@@ -47,10 +46,11 @@ app.get('/api', (req, res) => {
   });
 });
 
-// Start the server
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
+// Start the server - use HOST env var or default to 0.0.0.0
+const HOST = process.env.HOST || '0.0.0.0';
+app.listen(PORT, HOST, () => {
+  console.log(`Server is running on ${HOST}:${PORT}`);
   console.log(`- Local URL: http://localhost:${PORT}`);
-  console.log(`- If using Docker, use: http://localhost:3010`);
-  console.log(`- IMPORTANT: When running with Docker, use the command: docker run -d -p 3010:3000 vaibhavgabani/express-app:latest`);
+  console.log(`- Running in Docker: Container port ${PORT} is mapped to host port (default: 3010)`);
+  console.log(`- Access the application at: http://localhost:3010 (if using default port mapping)`);
 });
