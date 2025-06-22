@@ -49,7 +49,7 @@ app.get('/api', (req, res) => {
 // Start the server - use HOST env var or default to 0.0.0.0
 const HOST = process.env.HOST || '0.0.0.0';
 app.listen(PORT, HOST, () => {
-  console.log(`Apply this command frist than access : `);
+  console.log(`Apply this command frist than access :  `);
   console.log(`PORTS : docker run -d -p 3010:3000 --name express-app vaibhavgabani/express-app:latest`);
   console.log(`Server is running on ${HOST}:${PORT}`);
   console.log(`- Local URL: http://localhost:${PORT}`);
