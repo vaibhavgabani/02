@@ -94,3 +94,6 @@ running on your machine.
    ```bash
    docker logs express-app
    ```
+
+
+Get-CimInstance Win32_WinSAT
